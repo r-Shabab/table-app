@@ -23,6 +23,7 @@ import {
 
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableHeader } from './data-table-header';
+import { DataTableFilterChips } from './filters/data-table-filter-chips';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -63,6 +64,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
     <div>
       {/* header */}
       <DataTableHeader table={table} />
+      <DataTableFilterChips table={table} />
 
       {/* body */}
       <div className="overflow-hidden rounded-md border">

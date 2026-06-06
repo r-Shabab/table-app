@@ -48,27 +48,27 @@ export const userColumns: UserColumn[] = [
   },
   {
     accessorKey: 'name',
-    meta: { title: 'Name' },
+    meta: { title: 'Name', filterType: 'text' },
     header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
   },
   {
     accessorKey: 'email',
-    meta: { title: 'Email' },
+    meta: { title: 'Email', filterType: 'text' },
     header: ({ column }) => <DataTableColumnHeader column={column} title="Email" />,
   },
   {
     accessorKey: 'role',
-    meta: { title: 'Role' },
+    meta: { title: 'Role', filterType: 'multiSelect', quickFilter: true },
     header: ({ column }) => <DataTableColumnHeader column={column} title="Role" />,
   },
   {
     accessorKey: 'status',
-    meta: { title: 'Status' },
+    meta: { title: 'Status', filterType: 'multiSelect', quickFilter: true },
     header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
   },
   {
     accessorKey: 'salary',
-    meta: { title: 'Salary' },
+    meta: { title: 'Salary', filterType: 'number' },
     header: ({ column }) => <DataTableColumnHeader column={column} title="Salary" />,
 
     cell: ({ row }) => {
@@ -83,7 +83,7 @@ export const userColumns: UserColumn[] = [
   },
   {
     accessorKey: 'createdAt',
-    meta: { title: 'Created At' },
+    meta: { title: 'Created At', filterType: 'date' },
     header: ({ column }) => <DataTableColumnHeader column={column} title="Created At" />,
   },
   {
