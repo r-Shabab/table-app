@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   type ColumnDef,
   flexRender,
@@ -20,10 +21,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import { Input } from '@/components/ui/input';
-import { useState } from 'react';
 import { DataTablePagination } from './data-table-pagination';
-import { DataTableViewOptions } from './data-table-column-toggler';
+import { DataTableHeader } from './data-table-header';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,6 +35,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [globalFilter, setGlobalFilter] = useState('');
 
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
@@ -47,11 +47,13 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onGlobalFilterChange: setGlobalFilter,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
+      globalFilter,
       columnVisibility,
       rowSelection,
     },
@@ -60,15 +62,9 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   return (
     <div>
       {/* header */}
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-          onChange={(event) => table.getColumn('email')?.setFilterValue(event.target.value)}
-          className="max-w-sm"
-        />
-        <DataTableViewOptions table={table} />
-      </div>
+      <DataTableHeader table={table} />
+
+      {/* body */}
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>
@@ -108,6 +104,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         </Table>
       </div>
 
+      {/* footer */}
       <DataTablePagination table={table} />
     </div>
   );

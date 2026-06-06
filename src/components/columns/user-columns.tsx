@@ -1,5 +1,5 @@
 import { type ColumnDef } from '@tanstack/react-table';
-import type { User } from '../types/user-types';
+import type { User } from '../../types/user-types';
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,6 +17,7 @@ export type UserColumn = ColumnDef<User>;
 export const userColumns: UserColumn[] = [
   {
     id: 'select',
+    meta: { title: 'Select' },
     header: ({ table }) => {
       const isAll = table.getIsAllPageRowsSelected();
       const isSome = table.getIsSomePageRowsSelected();
@@ -46,6 +47,7 @@ export const userColumns: UserColumn[] = [
   },
   {
     accessorKey: 'name',
+    meta: { title: 'Name' },
     header: ({ column }) => {
       return (
         <Button
@@ -60,18 +62,22 @@ export const userColumns: UserColumn[] = [
   },
   {
     accessorKey: 'email',
+    meta: { title: 'Email' },
     header: 'Email',
   },
   {
     accessorKey: 'role',
+    meta: { title: 'Role' },
     header: 'Role',
   },
   {
     accessorKey: 'status',
+    meta: { title: 'Status' },
     header: 'Status',
   },
   {
     accessorKey: 'salary',
+    meta: { title: 'Salary' },
     header: () => <div className="text-right">Salary</div>,
     cell: ({ row }) => {
       const salary = parseFloat(row.getValue('salary'));
@@ -85,10 +91,12 @@ export const userColumns: UserColumn[] = [
   },
   {
     accessorKey: 'createdAt',
+    meta: { title: 'Created At' },
     header: 'Created At',
   },
   {
     id: 'actions',
+    meta: { title: 'Actions' },
     cell: () => {
       return (
         <DropdownMenu>

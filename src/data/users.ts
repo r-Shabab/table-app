@@ -1,10 +1,10 @@
-import type { User } from '@/components/types/user-types';
+import type { User } from '@/types/user-types';
 
 export const users: User[] = [
   {
     id: '1',
     name: 'Alice Johnson',
-    email: 'alice@example.com',
+    email: 'smith@example.com',
     role: 'Admin',
     status: 'Active',
     salary: 70000,
