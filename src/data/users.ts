@@ -1,0 +1,58 @@
+import type { User } from '@/components/types/user-types';
+
+export const users: User[] = [
+  {
+    id: '1',
+    name: 'Alice Johnson',
+    email: 'alice@example.com',
+    role: 'Admin',
+    status: 'Active',
+    salary: 70000,
+    createdAt: '2024-01-15',
+  },
+  {
+    id: '2',
+    name: 'Bob Smith',
+    email: 'bob@example.com',
+    role: 'Editor',
+    status: 'Active',
+    salary: 60000,
+    createdAt: '2024-03-22',
+  },
+  {
+    id: '3',
+    name: 'Charlie Lee',
+    email: 'charlie@example.com',
+    role: 'Viewer',
+    status: 'Inactive',
+    salary: 50000,
+    createdAt: '2024-06-10',
+  },
+  {
+    id: '4',
+    name: 'Diana Chen',
+    email: 'diana@example.com',
+    role: 'Editor',
+    status: 'Active',
+    salary: 60000,
+    createdAt: '2024-08-05',
+  },
+  {
+    id: '5',
+    name: 'Eve Martinez',
+    email: 'eve@example.com',
+    role: 'Viewer',
+    status: 'Active',
+    salary: 50000,
+    createdAt: '2024-09-18',
+  },
+  {
+    id: '6',
+    name: 'Frank Wilson',
+    email: 'frank@example.com',
+    role: 'Admin',
+    status: 'Inactive',
+    salary: 70000,
+    createdAt: '2024-11-30',
+  },
+];
