@@ -1,6 +1,6 @@
 import { type ColumnDef } from '@tanstack/react-table';
 import type { User } from '../../types/user-types';
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
+import { DataTableColumnHeader } from '../data-table/data-table-column-header';
 
 export type UserColumn = ColumnDef<User>;
 
@@ -48,37 +49,28 @@ export const userColumns: UserColumn[] = [
   {
     accessorKey: 'name',
     meta: { title: 'Name' },
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
   },
   {
     accessorKey: 'email',
     meta: { title: 'Email' },
-    header: 'Email',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Email" />,
   },
   {
     accessorKey: 'role',
     meta: { title: 'Role' },
-    header: 'Role',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Role" />,
   },
   {
     accessorKey: 'status',
     meta: { title: 'Status' },
-    header: 'Status',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
   },
   {
     accessorKey: 'salary',
     meta: { title: 'Salary' },
-    header: () => <div className="text-right">Salary</div>,
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Salary" />,
+
     cell: ({ row }) => {
       const salary = parseFloat(row.getValue('salary'));
       const formatted = new Intl.NumberFormat('en-US', {
@@ -92,7 +84,7 @@ export const userColumns: UserColumn[] = [
   {
     accessorKey: 'createdAt',
     meta: { title: 'Created At' },
-    header: 'Created At',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Created At" />,
   },
   {
     id: 'actions',
