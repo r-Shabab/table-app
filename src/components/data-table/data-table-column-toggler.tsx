@@ -18,11 +18,11 @@ export function DataTableViewOptions<TData>({ table }: { table: Table<TData> }) 
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
-          <Settings2 />
+          <Settings2 className="mr-2 size-4" />
           View
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-37.5">
+      <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
@@ -32,10 +32,11 @@ export function DataTableViewOptions<TData>({ table }: { table: Table<TData> }) 
             return (
               <DropdownMenuCheckboxItem
                 key={column.id}
+                className="capitalize"
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
-                {column.columnDef.meta?.title}
+                {column.columnDef.meta?.title || column.id}
               </DropdownMenuCheckboxItem>
             );
           })}

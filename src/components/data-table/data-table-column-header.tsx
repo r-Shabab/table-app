@@ -1,5 +1,5 @@
 import { type Column } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react';
+import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff, Pin, PinOff } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -25,6 +25,8 @@ export function DataTableColumnHeader<TData, TValue>({
     return <div className={cn(className)}>{title}</div>;
   }
 
+  const pinned = column.getIsPinned();
+
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <DropdownMenu>
@@ -49,11 +51,32 @@ export function DataTableColumnHeader<TData, TValue>({
             <ArrowDown />
             Desc
           </DropdownMenuItem>
+
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
             <EyeOff />
             Hide
           </DropdownMenuItem>
+
+          <DropdownMenuSeparator />
+          {pinned !== 'left' && (
+            <DropdownMenuItem onClick={() => column.pin('left')}>
+              <Pin className="rotate-45" />
+              Pin Left
+            </DropdownMenuItem>
+          )}
+          {pinned !== 'right' && (
+            <DropdownMenuItem onClick={() => column.pin('right')}>
+              <Pin className="-rotate-45" />
+              Pin Right
+            </DropdownMenuItem>
+          )}
+          {pinned && (
+            <DropdownMenuItem onClick={() => column.pin(false)}>
+              <PinOff />
+              Unpin
+            </DropdownMenuItem>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
